@@ -1,5 +1,5 @@
 import numpy as np
-
+import random
 
 class Gen_Data_loader():
     def __init__(self, batch_size):
@@ -31,8 +31,12 @@ class Gen_Data_loader():
 
 
 class Dis_dataloader():
-    def __init__(self, batch_size):
+    def __init__(self, batch_size, ref_size=None):
         self.batch_size = batch_size
+        if ref_size != None:
+            self.ref_size = ref_size
+        else:
+            self.ref_size = 16
         self.sentences = np.array([])
         self.labels = np.array([])
 
@@ -54,7 +58,7 @@ class Dis_dataloader():
                 if len(parse_line) == 20:
                     negative_examples.append(parse_line)
         self.sentences = np.array(positive_examples + negative_examples)
-
+        self.positive_examples = positive_examples
         # Generate labels
         positive_labels = [[0, 1] for _ in positive_examples]
         negative_labels = [[1, 0] for _ in negative_examples]
@@ -74,9 +78,14 @@ class Dis_dataloader():
 
         self.pointer = 0
 
+    def get_reference(self):
+        ref_samples = []
+        for _ in range(self.ref_size):
+            ref_samples.append(self.positive_examples[random.randint(0, len(self.positive_examples) - 1)])
+        return np.array(ref_samples)
 
     def next_batch(self):
-        ret = self.sentences_batches[self.pointer], self.labels_batches[self.pointer]
+        ret = self.sentences_batches[self.pointer], self.labels_batches[self.pointer], self.get_reference()
         self.pointer = (self.pointer + 1) % self.num_batch
         return ret
 
