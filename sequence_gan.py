@@ -86,14 +86,14 @@ def main():
     gen_data_loader = Gen_Data_loader(BATCH_SIZE)
     likelihood_data_loader = Gen_Data_loader(BATCH_SIZE) # For testing
     vocab_size = 5000
-    dis_data_loader = Dis_dataloader(BATCH_SIZE, 16)
+    dis_data_loader = Dis_dataloader(BATCH_SIZE, 8)
 
     generator = Generator(vocab_size, BATCH_SIZE, EMB_DIM, HIDDEN_DIM, SEQ_LENGTH, START_TOKEN)
     target_params = cPickle.load(open('save/target_params.pkl'))
     target_lstm = TARGET_LSTM(vocab_size, BATCH_SIZE, EMB_DIM, HIDDEN_DIM, SEQ_LENGTH, START_TOKEN, target_params) # The oracle model
 
     discriminator = Discriminator(sequence_length=20, num_classes=2, vocab_size=vocab_size, embedding_size=dis_embedding_dim, 
-                                filter_sizes=dis_filter_sizes, num_filters=dis_num_filters, l2_reg_lambda=dis_l2_reg_lambda, batch_size=dis_batch_size)
+                                filter_sizes=dis_filter_sizes, num_filters=dis_num_filters, l2_reg_lambda=dis_l2_reg_lambda, batch_size=dis_batch_size, reference_size=8)
 
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
@@ -147,7 +147,7 @@ def main():
             samples = generator.generate(sess)
             generate_samples(sess, generator, BATCH_SIZE, generated_num, negative_file)
             dis_data_loader.load_train_data(positive_file, negative_file)
-            rewards = rollout.get_reward(sess, samples, 16, discriminator, dis_data_loader)
+            rewards = rollout.get_reward(sess, samples, 8, discriminator, dis_data_loader)
             feed = {generator.x: samples, generator.rewards: rewards}
             _, loss = sess.run([generator.g_updates, generator.g_loss], feed_dict=feed)
         print 'Training generator epoch #%d, loss=%f' % (total_batch, loss)
