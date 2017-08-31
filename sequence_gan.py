@@ -165,7 +165,7 @@ def main():
         rollout.update_params()
 
         # Train the discriminator
-        for _ in range(5):
+        for idx in range(5):
             generate_samples(sess, generator, BATCH_SIZE, generated_num, negative_file)
             dis_data_loader.load_train_data(positive_file, negative_file)
 
@@ -180,7 +180,7 @@ def main():
                         discriminator.dropout_keep_prob: dis_dropout_keep_prob
                     }
                     _, loss = sess.run([discriminator.train_op, discriminator.loss], feed)
-        print 'Training discriminator epoch #%d, loss=%f' % (total_batch, loss)
+            print 'Training discriminator epoch #%d-%d, loss=%f' % (total_batch, idx, loss)
     log.close()
 
 
