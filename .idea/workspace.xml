@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a146b5c2-107e-4437-a9d5-910b8d4df3d4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sequence_gan.py" afterPath="$PROJECT_DIR$/sequence_gan.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/save/eval_file.txt" afterPath="$PROJECT_DIR$/save/eval_file.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/save/generator_sample.txt" afterPath="$PROJECT_DIR$/save/generator_sample.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/save/real_data.txt" afterPath="$PROJECT_DIR$/save/real_data.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +20,20 @@
       <file leaf-file-name="target_lstm.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/target_lstm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-255">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/generator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2753">
+              <caret line="30" column="132" lean-forward="true" selection-start-line="30" selection-start-column="132" selection-end-line="30" selection-end-column="132" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -29,8 +44,8 @@
       <file leaf-file-name="sequence_gan.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sequence_gan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="372">
+              <caret line="168" column="76" lean-forward="false" selection-start-line="168" selection-start-column="76" selection-end-line="168" selection-end-column="76" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -57,8 +72,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="480" />
-    <option name="y" value="368" />
+    <option name="x" value="348" />
+    <option name="y" value="330" />
     <option name="width" value="1141" />
     <option name="height" value="636" />
   </component>
@@ -273,7 +288,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="480" y="368" width="1141" height="636" extended-state="0" />
+    <frame x="348" y="330" width="1141" height="636" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2497809" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -310,8 +325,18 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/target_lstm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-255">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2753">
+          <caret line="30" column="132" lean-forward="true" selection-start-line="30" selection-start-column="132" selection-end-line="30" selection-end-column="132" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -320,8 +345,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sequence_gan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        <state relative-caret-position="372">
+          <caret line="168" column="76" lean-forward="false" selection-start-line="168" selection-start-column="76" selection-end-line="168" selection-end-column="76" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
