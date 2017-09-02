@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import model_settings
 
 class Gen_Data_loader():
     def __init__(self, batch_size):
@@ -55,7 +56,7 @@ class Dis_dataloader():
                 line = line.strip()
                 line = line.split()
                 parse_line = [int(x) for x in line]
-                if len(parse_line) == 20:
+                if len(parse_line) == model_settings.seq_len:
                     negative_examples.append(parse_line)
         self.sentences = np.array(positive_examples + negative_examples)
         self.positive_examples = positive_examples
