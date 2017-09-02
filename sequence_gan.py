@@ -113,13 +113,14 @@ def main():
     for epoch in xrange(PRE_EPOCH_NUM):
         loss = pre_train_epoch(sess, generator, gen_data_loader)
         print 'Pre-training generator epoch #%d, loss=%f' % (epoch, loss)
-        if epoch % 5 == 0:
-            generate_samples(sess, generator, BATCH_SIZE, generated_num, eval_file)
-            likelihood_data_loader.create_batches(eval_file)
-            test_loss = target_loss(sess, target_lstm, likelihood_data_loader)
-            print 'pre-train epoch ', epoch, 'test_loss ', test_loss
-            buffer = 'epoch:\t'+ str(epoch) + '\tnll:\t' + str(test_loss) + '\n'
-            log.write(buffer)
+        if not model_settings.use_real_data:
+            if epoch % 5 == 0:
+                generate_samples(sess, generator, BATCH_SIZE, generated_num, eval_file)
+                likelihood_data_loader.create_batches(eval_file)
+                test_loss = target_loss(sess, target_lstm, likelihood_data_loader)
+                print 'pre-train epoch ', epoch, 'test_loss ', test_loss
+                buffer = 'epoch:\t'+ str(epoch) + '\tnll:\t' + str(test_loss) + '\n'
+                log.write(buffer)
     print 'Start pre-training discriminator...'
     # Train 3 epoch on the generated data and do this for 50 times
     for idx in range(50):
@@ -157,13 +158,14 @@ def main():
         print 'Training generator epoch #%d, loss=%f' % (total_batch, loss)
 
         # Test
-        if total_batch % 5 == 0 or total_batch == TOTAL_BATCH - 1:
-            generate_samples(sess, generator, BATCH_SIZE, generated_num, eval_file)
-            likelihood_data_loader.create_batches(eval_file)
-            test_loss = target_loss(sess, target_lstm, likelihood_data_loader)
-            buffer = 'epoch:\t' + str(total_batch) + '\tnll:\t' + str(test_loss) + '\n'
-            print 'total_batch: ', total_batch, 'test_loss: ', test_loss
-            log.write(buffer)
+        if not model_settings.use_real_data:
+            if total_batch % 5 == 0 or total_batch == TOTAL_BATCH - 1:
+                generate_samples(sess, generator, BATCH_SIZE, generated_num, eval_file)
+                likelihood_data_loader.create_batches(eval_file)
+                test_loss = target_loss(sess, target_lstm, likelihood_data_loader)
+                buffer = 'epoch:\t' + str(total_batch) + '\tnll:\t' + str(test_loss) + '\n'
+                print 'total_batch: ', total_batch, 'test_loss: ', test_loss
+                log.write(buffer)
 
         # Update roll-out parameters
         rollout.update_params()
