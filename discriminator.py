@@ -192,7 +192,7 @@ class Discriminator(object):
                 self.pos_vec = tf.nn.embedding_lookup(tf.transpose(self.input_y), 0)
                 losses_minus = self.log_score * self.neg_vec
                 losses_posit = self.log_score * self.pos_vec
-                self.loss = - tf.reduce_sum(losses_minus) / tf.reduce_sum(self.neg_vec) + tf.reduce_sum(losses_posit) / tf.reduce_sum(self.pos_vec)
+                self.loss = (- tf.reduce_sum(losses_minus) / tf.reduce_sum(self.neg_vec) + tf.reduce_sum(losses_posit) / tf.reduce_sum(self.pos_vec)) / reference_size
 
         self.params = [param for param in tf.trainable_variables() if 'discriminator' in param.name]
         d_optimizer = tf.train.AdamOptimizer(1e-4)
