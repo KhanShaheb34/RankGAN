@@ -86,7 +86,10 @@ def main():
 
     gen_data_loader = Gen_Data_loader(BATCH_SIZE)
     likelihood_data_loader = Gen_Data_loader(BATCH_SIZE) # For testing
-    vocab_size = 5000
+    if not model_settings.use_real_data:
+        vocab_size = 5000
+    else:
+        vocab_size = model_settings.real_data_vocab_size
     dis_data_loader = Dis_dataloader(BATCH_SIZE, 4)
 
     generator = Generator(vocab_size, BATCH_SIZE, EMB_DIM, HIDDEN_DIM, SEQ_LENGTH, START_TOKEN)
