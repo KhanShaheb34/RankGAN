@@ -73,9 +73,9 @@ def pre_train_epoch(sess, trainable_model, data_loader):
 
     for it in xrange(data_loader.num_batch):
         batch = data_loader.next_batch()
-        _, g_loss = trainable_model.pretrain_step(sess, batch)
-        supervised_g_losses.append(g_loss)
-
+        if random.random() < (float(10000) / float(data_loader.data_size)):
+            _, g_loss = trainable_model.pretrain_step(sess, batch)
+            supervised_g_losses.append(g_loss)
     return np.mean(supervised_g_losses)
 
 

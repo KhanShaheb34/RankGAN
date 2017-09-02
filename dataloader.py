@@ -8,6 +8,7 @@ class Gen_Data_loader():
         self.token_stream = []
 
     def create_batches(self, data_file):
+        global pos_size
         self.token_stream = []
         with open(data_file, 'r') as f:
             for line in f:
@@ -18,6 +19,8 @@ class Gen_Data_loader():
                     self.token_stream.append(parse_line)
 
         self.num_batch = int(len(self.token_stream) / self.batch_size)
+        self.data_size = len(self.token_stream)
+        pos_size = self.data_size
         self.token_stream = self.token_stream[:self.num_batch * self.batch_size]
         self.sequence_batch = np.split(np.array(self.token_stream), self.num_batch, 0)
         self.pointer = 0
@@ -43,14 +46,16 @@ class Dis_dataloader():
 
     def load_train_data(self, positive_file, negative_file):
         # Load data
+        global pos_size
         positive_examples = []
         negative_examples = []
         with open(positive_file)as fin:
             for line in fin:
-                line = line.strip()
-                line = line.split()
-                parse_line = [int(x) for x in line]
-                positive_examples.append(parse_line)
+                if (random.random() * pos_size) < 10000:
+                    line = line.strip()
+                    line = line.split()
+                    parse_line = [int(x) for x in line]
+                    positive_examples.append(parse_line)
         with open(negative_file)as fin:
             for line in fin:
                 line = line.strip()
