@@ -1,9 +1,9 @@
 import tensorflow as tf
 from tensorflow.python.ops import tensor_array_ops, control_flow_ops
-
+import model_settings
 
 class TARGET_LSTM(object):
-    def __init__(self, num_emb, batch_size, emb_dim, hidden_dim, sequence_length, start_token, params):
+    def __init__(self, num_emb, batch_size, emb_dim, hidden_dim, sequence_length, start_token):
         self.num_emb = num_emb
         self.batch_size = batch_size
         self.emb_dim = emb_dim
@@ -12,12 +12,11 @@ class TARGET_LSTM(object):
         self.start_token = tf.constant([start_token] * self.batch_size, dtype=tf.int32)
         self.g_params = []
         self.temperature = 1.0
-        self.params = params
 
-        tf.set_random_seed(66)
+        tf.set_random_seed(233)
 
         with tf.variable_scope('generator'):
-            self.g_embeddings = tf.Variable(self.params[0])
+            self.g_embeddings = tf.Variable(self.init_matrix([self.num_emb, self.emb_dim]))
             self.g_params.append(self.g_embeddings)
             self.g_recurrent_unit = self.create_recurrent_unit(self.g_params)  # maps h_tm1 to h_t for generator
             self.g_output_unit = self.create_output_unit(self.g_params)  # maps h_t to o_t (output token logits)
@@ -110,21 +109,21 @@ class TARGET_LSTM(object):
 
     def create_recurrent_unit(self, params):
         # Weights and Bias for input and hidden tensor
-        self.Wi = tf.Variable(self.params[1])
-        self.Ui = tf.Variable(self.params[2])
-        self.bi = tf.Variable(self.params[3])
+        self.Wi = tf.Variable(self.init_matrix([self.emb_dim, self.hidden_dim]))
+        self.Ui = tf.Variable(self.init_matrix([self.hidden_dim, self.hidden_dim]))
+        self.bi = tf.Variable(self.init_matrix([self.hidden_dim]))
 
-        self.Wf = tf.Variable(self.params[4])
-        self.Uf = tf.Variable(self.params[5])
-        self.bf = tf.Variable(self.params[6])
+        self.Wf = tf.Variable(self.init_matrix([self.emb_dim, self.hidden_dim]))
+        self.Uf = tf.Variable(self.init_matrix([self.hidden_dim, self.hidden_dim]))
+        self.bf = tf.Variable(self.init_matrix([self.hidden_dim]))
 
-        self.Wog = tf.Variable(self.params[7])
-        self.Uog = tf.Variable(self.params[8])
-        self.bog = tf.Variable(self.params[9])
+        self.Wog = tf.Variable(self.init_matrix([self.emb_dim, self.hidden_dim]))
+        self.Uog = tf.Variable(self.init_matrix([self.hidden_dim, self.hidden_dim]))
+        self.bog = tf.Variable(self.init_matrix([self.hidden_dim]))
 
-        self.Wc = tf.Variable(self.params[10])
-        self.Uc = tf.Variable(self.params[11])
-        self.bc = tf.Variable(self.params[12])
+        self.Wc = tf.Variable(self.init_matrix([self.emb_dim, self.hidden_dim]))
+        self.Uc = tf.Variable(self.init_matrix([self.hidden_dim, self.hidden_dim]))
+        self.bc = tf.Variable(self.init_matrix([self.hidden_dim]))
         params.extend([
             self.Wi, self.Ui, self.bi,
             self.Wf, self.Uf, self.bf,
@@ -169,8 +168,8 @@ class TARGET_LSTM(object):
         return unit
 
     def create_output_unit(self, params):
-        self.Wo = tf.Variable(self.params[13])
-        self.bo = tf.Variable(self.params[14])
+        self.Wo = tf.Variable(self.init_matrix([self.hidden_dim, self.num_emb]))
+        self.bo = tf.Variable(self.init_matrix([self.num_emb]))
         params.extend([self.Wo, self.bo])
 
         def unit(hidden_memory_tuple):

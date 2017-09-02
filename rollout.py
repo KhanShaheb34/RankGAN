@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.python.ops import tensor_array_ops, control_flow_ops
 import numpy as np
+import model_settings
 
 
 class ROLLOUT(object):
@@ -77,7 +78,7 @@ class ROLLOUT(object):
     def get_reward(self, sess, input_x, rollout_num, discriminator, dis_data_loader):
         rewards = []
         for i in range(rollout_num):
-            for given_num in range(1, 20):
+            for given_num in range(1, model_settings.seq_len):
                 feed = {self.x: input_x, self.given_num: given_num}
                 samples = sess.run(self.gen_x, feed)
                 feed = {discriminator.input_x: samples, discriminator.dropout_keep_prob: 1.0, discriminator.input_ref: dis_data_loader.get_reference()}
@@ -95,7 +96,7 @@ class ROLLOUT(object):
             if i == 0:
                 rewards.append(ypred)
             else:
-                rewards[19] += ypred
+                rewards[model_settings.seq_len - 1] += ypred
 
         rewards = np.transpose(np.array(rewards)) / (1.0 * rollout_num)  # batch_size x seq_length
         return rewards

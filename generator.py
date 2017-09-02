@@ -21,6 +21,8 @@ class Generator(object):
 
         self.expected_reward = tf.Variable(tf.zeros([self.sequence_length]))
 
+        tf.set_random_seed(666)
+
         with tf.variable_scope('generator'):
             self.g_embeddings = tf.Variable(self.init_matrix([self.num_emb, self.emb_dim]))
             self.g_params.append(self.g_embeddings)
