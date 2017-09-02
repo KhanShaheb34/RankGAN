@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a146b5c2-107e-4437-a9d5-910b8d4df3d4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model_settings.py" afterPath="$PROJECT_DIR$/model_settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/save/real_data.txt" afterPath="$PROJECT_DIR$/save/real_data.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sequence_gan.py" afterPath="$PROJECT_DIR$/sequence_gan.py" />
-    </list>
+    <list default="true" id="a146b5c2-107e-4437-a9d5-910b8d4df3d4" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sequence_gan.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sequence_gan.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sequence_gan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="96" column="57" lean-forward="false" selection-start-line="96" selection-start-column="57" selection-end-line="96" selection-end-column="57" />
+            <state relative-caret-position="90">
+              <caret line="74" column="40" lean-forward="true" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="40" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -87,7 +83,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model_settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="model_settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model_settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
@@ -604,21 +600,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sequence_gan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="74" column="40" lean-forward="true" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model_settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="38" lean-forward="false" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sequence_gan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="96" column="57" lean-forward="false" selection-start-line="96" selection-start-column="57" selection-end-line="96" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
