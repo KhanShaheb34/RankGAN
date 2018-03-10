@@ -1,4 +1,4 @@
-use_real_data = True
+use_real_data = False
 COCO_vocab_size = 4980
 COCO_seq_len = 32
 NEWS_vocab_size = 5742
