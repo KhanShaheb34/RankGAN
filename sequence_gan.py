@@ -1,6 +1,7 @@
 from __future__ import print_function
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import random
 from dataloader import Gen_Data_loader, Dis_dataloader
 from generator import Generator
